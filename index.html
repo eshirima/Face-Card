@@ -62,7 +62,7 @@
                     alert("Login Failed!");
                 }
             }, {
-                scope: 'me'
+                scope: 'user_about_me,user_activities,user_location,email'
                 //scope: 'email,user_photos,publish_actions'
             });
         }
@@ -83,7 +83,7 @@
             FB.api(
               '/me/',
               'GET',
-              {},
+              { "fields": "first_name,last_name,bio,gender,location,email" },
               function (response) {
                   // Insert your code here
               }
