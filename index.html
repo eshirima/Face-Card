@@ -48,7 +48,7 @@
         function Login() {
             FB.login(function (response) {
                 if (response.authResponse) {
-                    FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
+                    //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
                     //FB.api('/me', function (response) {
                     //    document.getElementById("displayName").innerHTML = response.name;
                     //    document.getElementById("userName").innerHTML = response.username;
@@ -62,7 +62,7 @@
                     alert("Login Failed!");
                 }
             }, {
-                scope: 'user_friends'
+                scope: 'user_friends,user_photos,user_location'
                 //scope: 'email,user_photos,publish_actions'
             });
         }
@@ -81,13 +81,13 @@
 
         function getFriends() {
             FB.api(
-  '/me/friends',
-  'GET',
-  {},
-  function (response) {
-      console.log(response);
-  }
-);
+              '/me/friends',
+              'GET',
+              { "fields": "picture" },
+              function (response) {
+                  console.log(response);
+              }
+            );
         }
 
         //function getFriends() {
