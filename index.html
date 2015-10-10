@@ -48,6 +48,9 @@
         function Login() {
             FB.login(function (response) {
                 if (response.authResponse) {
+                    FB.api('/me', 'GET', { "fields": "first_name,last_name,bio,gender,location,email" }, function (response) {
+                        console.log(response);
+                    });
                     //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
                     //FB.api('/me', function (response) {
                     //    document.getElementById("displayName").innerHTML = response.name;
@@ -62,7 +65,7 @@
                     alert("Login Failed!");
                 }
             }, {
-                scope: 'user_about_me,user_activities,user_location,email'
+                scope: 'user_about_me,user_activities,user_location,email,user_friends'
                 //scope: 'email,user_photos,publish_actions'
             });
         }
@@ -81,11 +84,11 @@
 
         function getFriends() {
             FB.api(
-              '/me/',
+              '/me',
               'GET',
-              { "fields": "first_name,last_name,bio,gender,location,email" },
+              { "fields": "friends{first_name,last_name}" },
               function (response) {
-                  console.log(response.data);
+                  // Insert your code here
               }
             );
         }
