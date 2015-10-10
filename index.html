@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Facebook Data Retrieval</title>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script src="jquery-1.11.2.min.js"></script>
+    <script>
+        //loads and initializes the Facebook SDK for Javascript and initializes it
+        window.fbAsyncInit = function () {
+            FB.init({ 
+                appId: '476842662488191',
+                //this controls if the current user login status is retrieved after each page refresh or not. If set to false, then it needs to be checked using getLoginStatus()
+                status: true,
+                cookie: true,
+                //indicates whether markup of social plugins is parsed(and rendered) or not
+                xfbml: true,
+            });
+
+            FB.Event.subscribe('auth.authResponseChange', function (response) {
+                if (response.status == 'connected') {
+                    alert("Successfully connected to Facebook");
+                } else if (response.status == 'not_authorized') {
+                    alert("Login Failed");
+                } else {
+                    alert("Unknown Error");
+                }
+            });
+        };
+
+        (function (doc) {
+            var js;
+            var id = 'facebook-jssdk';
+            var ref = doc.getElementsByTagName('script')[0];
+            if (doc.getElementById(id)) {
+                return;
+            }
+            js = doc.createElement('script');
+            js.id = id;
+            js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+    </script>
+    <input type="button" value="Login" onclick="Login();" />
+    <script>
+        function Login() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
+                    //FB.api('/me', function (response) {
+                    //    document.getElementById("displayName").innerHTML = response.name;
+                    //    document.getElementById("userName").innerHTML = response.username;
+                    //    document.getElementById("userID").innerHTML = response.id;
+                    //    document.getElementById("userEmail").innerHTML = response.email;
+                    //    FB.api('/me/picture?type=normal', function (response) {
+                    //        document.getElementById("profileImage").setAttribute("src", response.data.url);
+                    //    });
+                    //});
+                } else {
+                    alert("Login Failed!");
+                }
+            }, {
+                scope: 'user_friends'
+                //scope: 'email,user_photos,publish_actions'
+            });
+        }
+    </script>
+    <input type="button" value="Log Out" onclick="Logout();" />
+    <script>
+        function Logout() {
+            FB.logout(function () { document.location.reload(); });
+        }
+    </script>
+    <input type="button" value="User Friends" onclick="getFriends();" />
+    <div id="placeholder"></div>
+
+    <script src="jquery-1.11.2.min.js"></script>
+    <script>
+
+        function getFriends() {
+            FB.api(
+  '/me/friends',
+  'GET',
+  {},
+  function (response) {
+      console.log(response);
+  }
+);
+        }
+
+        //function getFriends() {
+        //    FB.api('/me/friends', function (response) {
+        //        console.log(response);
+        //        if (response) {
+        //            $.each(response.data, function (index, friend) {
+        //                alert(friend.name + ' has id:' + friend.id);
+        //                console.log("This works");
+        //            });
+        //        } else {
+        //            alert("Error!");
+        //        }
+        //    });
+        //}
+
+        ////TODO: change the access token after a couple of minutes
+        //function getFriends() {
+        //    $.getJSON('https://graph.facebook.com/me/friends?access_token=CAACEdEose0cBAIJ8RXqBxgvxPFLb8x8oRpVWkgTQdeh5un7A9x0zXvW7kVkbVkjEwLKfjNUv3Aff0t0K6gCZAl4nQmzqMZBCEyQaElKLNPKqk8k4VAbCpEBgdrZBZBewg0LCGeDItH9PJ4ldQBOfuuyLTOLsKQTw6j72zKk4e5l1iECAZAAU5lSiV8ZCjWCRJAJAWNrJgJ5DZCPON9e7FIY', function (mydata) {
+        //        var output="<ul>";
+        //        for (var i in mydata.data) {
+        //            output+="<li>name : " + mydata.data[i].name + "<br/>id : " + mydata.data[i].id + "</li>";
+        //        }
+
+        //        output+="</ul>";
+        //        document.getElementById("placeholder").innerHTML = output;
+        //    });
+        //}
+    </script>
+</body>
+</html>
