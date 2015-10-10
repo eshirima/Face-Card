@@ -81,11 +81,11 @@
 
         function getFriends() {
             FB.api(
-              '/me/friends',
+              '/me/',
               'GET',
-              { "fields": "picture" },
+              {},
               function (response) {
-                  console.log(response);
+                  // Insert your code here
               }
             );
         }
