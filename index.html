@@ -85,7 +85,7 @@
             FB.api(
               '/me',
               'GET',
-              { "fields": "friends{first_name,last_name}" },
+              { "fields": "friends{first_name,last_name,picture}" },
               function (response) {
                   console.log(response);
               }
