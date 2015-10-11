@@ -48,12 +48,17 @@
         function Login() {
             FB.login(function (response) {
                 if (response.authResponse) {
-                    FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,bio" }, function (response) {
-                        console.log(response);
-                        //var output = '';
-                        //for (var property in response) {
-                        //    output += property + ':' + response[property] + '; ';
-                        //}
+                    FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
+                        var output = '';
+
+                        for (var property in response) {
+                            if (typeof response[property] == 'string') {
+                                output += property + ': ' + response[property] + '; </br>';
+                            } else {
+                                output += property + ': { </br>' + print(response[property]) + '}';
+                            }
+                        }
+                        return output;
                         //alert(output);
                     });
                     //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
