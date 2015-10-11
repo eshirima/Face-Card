@@ -46,18 +46,16 @@
     <input type="button" value="Login" onclick="Login();" />
     <script>
         function Login() {
-            var output = '';
             FB.login(function (response) {
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
-                        for (var property in response) {
-                            if (typeof response[property] == 'string') {
-                                output += property + ': ' + response[property] + ';';
-                            } else {
-                                output += property + print(response[property]);
-                            }
-                        }
-                        console.log(output);
+                        JSON.stringify(response);
+                        console.log(response);
+                        //var output = '';
+                        //for (var property in response) {
+                        //    output += property + ':' + response[property] + '; ';
+                        //}
+                        //alert(output);
                     });
                     //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
                     //FB.api('/me', function (response) {
@@ -99,20 +97,6 @@
               }
             );
         }
-
-        //function getFriends() {
-        //    FB.api('/me/friends', function (response) {
-        //        console.log(response);
-        //        if (response) {
-        //            $.each(response.data, function (index, friend) {
-        //                alert(friend.name + ' has id:' + friend.id);
-        //                console.log("This works");
-        //            });
-        //        } else {
-        //            alert("Error!");
-        //        }
-        //    });
-        //}
 
         ////TODO: change the access token after a couple of minutes
         //function getFriends() {
