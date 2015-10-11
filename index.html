@@ -45,17 +45,20 @@
     </script>
     <input type="button" value="Login" onclick="Login();" />
     <script>
-        function Login() {
+        function Login(callback) {
             FB.login(function (response) {
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
-                        JSON.stringify(response);
+                        var jsonStuff = JSON.stringify(response);
                         console.log(response);
-                        //var output = '';
-                        //for (var property in response) {
-                        //    output += property + ':' + response[property] + '; ';
-                        //}
-                        //alert(output);
+                        callback(response);
+
+                        var output = [];
+                        for (var property in response) {
+                            //output += property + ':' + response[property] + '; ';
+                            output.push(property);
+                        }
+                        alert(output);
                     });
                     //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
                     //FB.api('/me', function (response) {
