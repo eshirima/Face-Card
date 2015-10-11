@@ -52,9 +52,9 @@
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
                         for (var property in response) {
                             if (typeof response[property] == 'string') {
-                                output += property + ': ' + response[property] + '; </br>';
+                                output += property + ': ' + response[property] + ';';
                             } else {
-                                output += property + ': { </br>' + print(response[property]) + '}';
+                                output += property + print(response[property]);
                             }
                         }
                         console.log(output);
