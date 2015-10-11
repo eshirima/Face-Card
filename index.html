@@ -104,7 +104,13 @@
     <input type="button" value="Download" onclick="downloadFile();" />
     <script>
         function downloadFile() {
-            window.open('userInfo.txt');
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', "userInfo.txt");
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
         }
     </script>
 </body>
