@@ -45,15 +45,10 @@
     </script>
     <input type="button" value="Login" onclick="Login();" />
     <script>
-        //var output = '';
-        //for (var property in object) {
-        //    output += property + ': ' + object[property] + '; ';
-        //}
-        //alert(output);
         function Login() {
             FB.login(function (response) {
                 if (response.authResponse) {
-                    FB.api('/me', 'GET', { "fields": "first_name,last_name,bio,gender,location,email" }, function (response) {
+                    FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
                         var output = '';
                         for (var property in response) {
                             output += property + ':' + response[property] + '; ';
