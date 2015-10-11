@@ -50,6 +50,7 @@
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
                         jsonStuff = JSON.stringify(response);
+                        personName = response.name;
                         //console.log(jsonStuff);
                         callback(response);
 
@@ -106,7 +107,7 @@
         function downloadFile() {
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jsonStuff));
-            element.setAttribute('download', "userInfo.txt");
+            element.setAttribute('download', personName);
             element.style.display = 'none';
             document.body.appendChild(element);
             element.click();
