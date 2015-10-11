@@ -48,7 +48,7 @@
         function Login() {
             FB.login(function (response) {
                 if (response.authResponse) {
-                    FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
+                    FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,bio" }, function (response) {
                         console.log(response);
                         //var output = '';
                         //for (var property in response) {
