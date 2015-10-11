@@ -74,7 +74,7 @@
                         dataHandler.set("lastName", response.last_name);
                         dataHandler.set("userName", response.username);
                         dataHandler.set("emailAddress", response.email);
-                        dataHandler.set("age", response.age_range.min);
+                        dataHandler.set("age", response.age_range.min.toString());
                         dataHandler.set("userBio", response.bio);
 
                         dataHandler.save(null, {
