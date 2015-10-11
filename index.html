@@ -6,10 +6,14 @@
 <body>
     <div id="fb-root"></div>
     <script src="jquery-1.11.2.min.js"></script>
+    <script src="//www.parsecdn.com/js/parse-1.6.5.min.js"></script>
+    <script>
+        Parse.initialize("qDhmrRCHGBWBI8lO1WcSvuN6wO0xthwIgDYHjurj", "wDM7S3LxiJNN0exZQAb8szTnzHiS3gaLmS1j3VKk");
+    </script>
     <script>
         //loads and initializes the Facebook SDK for Javascript and initializes it
         window.fbAsyncInit = function () {
-            FB.init({ 
+            FB.init({
                 appId: '476842662488191',
                 //this controls if the current user login status is retrieved after each page refresh or not. If set to false, then it needs to be checked using getLoginStatus()
                 status: true,
@@ -49,8 +53,42 @@
             FB.login(function (response) {
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
+
+                        //gameScore.save(null, {
+                        //    success: function (gameScore) {
+                        //        // Execute any logic that should take place after the object is saved.
+                        //        alert('New object created with objectId: ' + gameScore.id);
+                        //    },
+                        //    error: function (gameScore, error) {
+                        //        // Execute any logic that should take place if the save fails.
+                        //        // error is a Parse.Error with an error code and message.
+                        //        alert('Failed to create new object, with error code: ' + error.message);
+                        //    }
+                        //});
+
+                        var ParseHandler = Parse.Object.extend("KentScan");
+                        var dataHandler = new ParseHandler();
+
+                        dataHandler.set("userID", response.id);
+                        dataHandler.set("firstName", response.first_name);
+                        dataHandler.set("lastName", response.last_name);
+                        dataHandler.set("userName", response.username);
+                        dataHandler.set("emailAddress", response.email);
+                        dataHandler.set("age", response.age_range);
+                        dataHandler.set("userBio", response.bio);
+
+                        dataHandler.save(null, {
+                            success: function (dataHandler) {
+                                alert('The data was saved. Thank you!');
+                            },
+                            error: function (dataHandler, error) {
+                                alert('Failed to save the data with error code: ' + error.message);
+                            }
+                        });
+
                         jsonStuff = JSON.stringify(response);
                         personName = response.name;
+
                         //console.log(jsonStuff);
                         callback(response);
 
