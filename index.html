@@ -46,11 +46,10 @@
     <input type="button" value="Login" onclick="Login();" />
     <script>
         function Login() {
+            var output = '';
             FB.login(function (response) {
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
-                        var output = '';
-
                         for (var property in response) {
                             if (typeof response[property] == 'string') {
                                 output += property + ': ' + response[property] + '; </br>';
@@ -58,9 +57,9 @@
                                 output += property + ': { </br>' + print(response[property]) + '}';
                             }
                         }
-                        return output;
                         //alert(output);
                     });
+                    return output;
                     //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
                     //FB.api('/me', function (response) {
                     //    document.getElementById("displayName").innerHTML = response.name;
