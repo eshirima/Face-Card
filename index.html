@@ -50,7 +50,7 @@
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
                         var jsonStuff = JSON.stringify(response);
-                        console.log(response);
+                        //console.log(response);
                         callback(response);
 
                         var output = [];
@@ -58,7 +58,7 @@
                             //output += property + ':' + response[property] + '; ';
                             output.push(property);
                         }
-                        alert(output);
+                        //alert(output);
                     });
                     //FB.api('/me/feed', 'post', { message: 'Hello, world again!' });
                     //FB.api('/me', function (response) {
