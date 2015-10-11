@@ -43,7 +43,7 @@
             ref.parentNode.insertBefore(js, ref);
         }(document));
     </script>
-    <input type="button" value="Login" onclick="Login();" />
+    <input type="button" value="Login" onclick="Login(function test(value) {console.log(value)});" />
     <script>
         function Login(callback) {
             FB.login(function (response) {
