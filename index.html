@@ -100,19 +100,13 @@
               }
             );
         }
+    </script>
 
-        ////TODO: change the access token after a couple of minutes
-        //function getFriends() {
-        //    $.getJSON('https://graph.facebook.com/me/friends?access_token=CAACEdEose0cBAHF5KZAKBFHnAUyxbm4w2nzPCoUl8yMHgktzghcI6ZA2t7EZCZBZBEKoa751lcqymirdJVPtfIIe4YxMjywaotEvmxx50aCwtnHULZAb7s748uAuG2cZBGo9Az9TrPULR4ysrdW3Gxv8D1s5arZAoj5e2eyFZANo43JREqdgyosZCNo6AvR6fyZCYpYJUjcfpsgj6P1azpIUELN', function (mydata) {
-        //        var output="<ul>";
-        //        for (var i in mydata.data) {
-        //            output+="<li>name : " + mydata.data[i].name + "<br/>id : " + mydata.data[i].id + "</li>";
-        //        }
-
-        //        output+="</ul>";
-        //        document.getElementById("placeholder").innerHTML = output;
-        //    });
-        //}
+    <input type="button" value="Download" onclick="window.open('userInfo.txt')" >downloadFile();" />
+    <script>
+        function downloadFile() {
+            window.open('userInfo.txt');
+        }
     </script>
 </body>
 </html>
