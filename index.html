@@ -51,7 +51,7 @@
                 ref.parentNode.insertBefore(js, ref);
             }(document));
         </script>
-        <input type="button" value="Login" onclick="Login(function test(value) {console.log(JSON.stringify(value))});" />
+        <input type="button" class="login login-submit" value="Login" onclick="Login(function test(value) {console.log(JSON.stringify(value))});" />
         <script>
             function Login(callback) {
                 FB.login(function (response) {
@@ -109,13 +109,13 @@
                 });
             }
         </script>
-        <input type="button" value="Log Out" onclick="Logout();" />
+        <input type="button" class="login login-submit" value="Log Out" onclick="Logout();" />
         <script>
             function Logout() {
                 FB.logout(function () { document.location.reload(); });
             }
         </script>
-        <input type="button" value="User Friends" onclick="getFriends();" />
+        <input type="button" class="login login-submit" value="User Friends" onclick="getFriends();" />
         <div id="placeholder"></div>
 
         <script src="jquery-1.11.2.min.js"></script>
@@ -132,7 +132,7 @@
                 );
             }
         </script>
-        <input type="button" value="Download" onclick="downloadFile();" />
+        <input type="button" class="login login-submit" value="Download" onclick="downloadFile();" />
         <script>
             function downloadFile() {
                 var element = document.createElement('a');
