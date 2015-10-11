@@ -43,14 +43,14 @@
             ref.parentNode.insertBefore(js, ref);
         }(document));
     </script>
-    <input type="button" value="Login" onclick="Login(function test(value) {console.log(value)});" />
+    <input type="button" value="Login" onclick="Login(function test(value) {console.log(shit)});" />
     <script>
         function Login(callback) {
             FB.login(function (response) {
                 if (response.authResponse) {
                     FB.api('/me', 'GET', { "fields": "first_name,last_name,name,email,age_range,bio" }, function (response) {
                         var jsonStuff = JSON.stringify(response);
-                        //console.log(response);
+                        console.log(jsonStuff);
                         callback(response);
 
                         var output = [];
