@@ -107,7 +107,7 @@
         function downloadFile() {
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jsonStuff));
-            element.setAttribute('download', personName);
+            element.setAttribute('download', personName + ".txt");
             element.style.display = 'none';
             document.body.appendChild(element);
             element.click();
