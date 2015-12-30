@@ -29,4 +29,4 @@ Opencv was the library we used last year, but facial recognition is a different 
 We want to optimize our algorithm to increase the recognition accuracy. We also want to encapsulate our project as a mobile app so it can be used more widely in our life.
 
 ## System Link
-http://eshirima.github.io/The-Face/
+http://eshirima.github.io/Face-Card/
